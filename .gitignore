@@ -14,8 +14,7 @@ logs
 results
 
 npm-debug.log
-node_modules/*
-!node_modules/ghost-gql/lib/**
+node_modules
 bower_components
 .bowerrc
 .idea/*
