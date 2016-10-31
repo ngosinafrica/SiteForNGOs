@@ -7,23 +7,32 @@ var path = require('path'),
     config;
 
 config = {
-    // ### Production
-    // When running Ghost in the wild, use the production environment.
-    // Configure your URL and mail settings here
+    // Production (Heroku)
     production: {
-        url: 'http://my-ghost-blog.com',
-        mail: {},
+        url: process.env.HEROKU_URL,
+        mail: {
+            transport: 'SMTP',
+            options: {
+                service: 'Mailgun',
+                auth: {
+                    user: process.env.MAILGUN_SMTP_LOGIN,
+                    pass: process.env.MAILGUN_SMTP_PASSWORD
+                }
+            }
+        },
+        fileStorage: fileStorage,
+        storage: storage,
         database: {
-            client: 'sqlite3',
-            connection: {
-                filename: path.join(__dirname, '/content/data/ghost.db')
-            },
+            client: 'postgres',
+            connection: process.env.DATABASE_URL,
             debug: false
         },
-
         server: {
-            host: '127.0.0.1',
-            port: '2368'
+            host: '0.0.0.0',
+            port: process.env.PORT
+        },
+        paths: {
+            contentPath: path.join(__dirname, '/content/')
         }
     },
 
