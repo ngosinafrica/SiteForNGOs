@@ -40,6 +40,7 @@ coreHelpers.url = require('./url');
 
 // Specialist helpers for certain templates
 coreHelpers.input_password = require('./input_password');
+coreHelpers.if_even = require('./if_even');
 coreHelpers.input_email = require('./input_email');
 coreHelpers.page_url = require('./page_url');
 coreHelpers.pageUrl = require('./page_url').deprecated;
@@ -115,6 +116,8 @@ registerHelpers = function (adminHbs) {
     registerThemeHelper('twitter_url', coreHelpers.twitter_url);
     registerThemeHelper('facebook_url', coreHelpers.facebook_url);
     registerThemeHelper('url', coreHelpers.url);
+    //custom theme helpers
+    registerThemeHelper('if_even', coreHelpers.if_even);
 
     // Async theme helpers
     registerAsyncThemeHelper('ghost_foot', coreHelpers.ghost_foot);
@@ -126,6 +129,7 @@ registerHelpers = function (adminHbs) {
     // Register admin helpers
     registerAdminHelper('asset', coreHelpers.asset);
     registerAdminHelper('input_password', coreHelpers.input_password);
+
 };
 
 module.exports = coreHelpers;
